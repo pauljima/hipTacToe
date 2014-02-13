@@ -18,6 +18,11 @@
   
 
   <gameboard>
+    <controls>
+      <button data-action="reset-game">Reset</button>
+      <messages>Shall we play a game?</messages>
+    </controls>
+
     <!-- <h1>Shall we play a game?</h1> -->
 <!-- 
   // cut 1 - prioritized taking middle square
@@ -33,6 +38,8 @@
     <cell class="available" data-cell="9">7</cell>
     <cell class="available" data-cell="5">8</cell>
  -->
+ <!-- 
+  // cut 2 - shifting the priority around only n+1s the strategery (thx GW jr.)
     <cell onclick="" class="available" data-cell="1">0</cell>
     <cell onclick="" class="available" data-cell="6">1</cell>
     <cell onclick="" class="available" data-cell="3">2</cell>
@@ -44,11 +51,18 @@
     <cell onclick="" class="available" data-cell="4">6</cell>
     <cell onclick="" class="available" data-cell="9">7</cell>
     <cell onclick="" class="available" data-cell="5">8</cell>
+ -->
+    <cell onclick="" class="available" data-cell="0" data-cell-index="0">0</cell>
+    <cell onclick="" class="available" data-cell="0" data-cell-index="1">1</cell>
+    <cell onclick="" class="available" data-cell="0" data-cell-index="2">2</cell>
 
-    <controls>
-      <button data-action="reset-game">Reset</button>
-      <messages />
-    </controls>
+    <cell onclick="" class="available" data-cell="0" data-cell-index="3">3</cell>
+    <cell onclick="" class="available" data-cell="0" data-cell-index="4">4</cell>
+    <cell onclick="" class="available" data-cell="0" data-cell-index="5">5</cell>
+
+    <cell onclick="" class="available" data-cell="0" data-cell-index="6">6</cell>
+    <cell onclick="" class="available" data-cell="0" data-cell-index="7">7</cell>
+    <cell onclick="" class="available" data-cell="0" data-cell-index="8">8</cell>
   </gameboard>
  
   

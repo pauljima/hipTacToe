@@ -86,10 +86,11 @@ if(![].indexOf) {
    * JS calculates best move, passes turn back to player
    */
   function play() {
-    console.log('@play');
+    // console.log('@play');
     var availableCells = $('cell.available'),
       bestMoves, bridgeMove,
       strongOpenMove = _getBestCell(availableCells);
+      // strongOpenMove = _getBestCell(cells);
 
     // get logically weighted cell
     bridgeMove = _getBridgeMove();
@@ -176,13 +177,16 @@ if(![].indexOf) {
       }
     }
 
+    // joshua loses
     if(ret.length > 1) {
-      if(confirm('Stalemate.  I refuse to lose to you.  Press Ok to play again.')) {
-        resetBoard();
-      } else {
-        alert('really? really?  fine.');
-        return ret;
-      }
+      // alert('really? really?  fine.');
+      return ret;
+      // if(confirm('Stalemate.  I refuse to lose to you.  Press Ok to play again.')) {
+      //   resetBoard();
+      // } else {
+      //   alert('really? really?  fine.');
+      //   return ret;
+      // }
     } else {
       return ret;
     }
@@ -191,22 +195,38 @@ if(![].indexOf) {
 
   /**
    * low level, determine best cell based on rank
-   * @param {NodeList} cells
+   * @param {NodeList} cells - this is a filtered list of available cells
    */
   function _getBestCell(cells) {
-    var ret = null, 
-      lowest = 9;
+    var ret = null, j, m, i, n, cellIndex,
+      lowest = 9,
+      // reflow weights
+      random,
+      reflow = [ 4 ], // center
+      p0s = [ 0, 2, 6, 8 ], // corners
+      p1s = [ 1, 3, 5, 7 ]; // others
 
-    for(var i=0, n=cells.length; i<n; i++) {
-      if(parseInt(cells[i].dataset.cell) < lowest) {
-        lowest = parseInt(cells[i].dataset.cell);
-        ret = cells[i];
+    // randomize tier-0, concat with randomized tier-1
+    while(p0s.length > 0) {
+      random = Math.floor(Math.random() * (p0s.length));
+      reflow = reflow.concat(p0s.splice(random, 1));
+    }
+    while(p1s.length > 0) {
+      random = Math.floor(Math.random() * (p1s.length));
+      reflow = reflow.concat(p1s.splice(random, 1));
+    }
+    // console.log(reflow);
+
+    // iterate through reflowed priority list, find lowest available cell and return
+    for(i=0, n=reflow.length; i<n; i++) {
+      for(j=0, m=cells.length; j<m; j++) {
+        if(parseInt(cells[j].dataset.cellIndex) === reflow[i]) {
+          return cells[j];
+        }
       }
     }
 
-    console.log('bestCell', ret);
-
-    return ret;
+    return ret; // 
   }
 
 
@@ -260,7 +280,7 @@ if(![].indexOf) {
         if(checks.join('') === 'ccc' || checks.join('') == 'ppp') {
           return true;
         }
-        console.log(checks);
+        // console.log(checks);
       }
     }
 

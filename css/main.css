@@ -62,12 +62,21 @@ gameboard controls {
   background-color: #cecece;
   border: 1px solid #fff;
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
   right: 0;
   line-height: 50px;
   height: 50px;
-  margin-bottom: -53px;
+  margin-top: -53px;
+  padding: 0 10px;
+}
+gameboard controls button {
+  float: right;
+  height: 30px;
+  margin: 10px 0;
+}
+gameboard controls messages {
+  color: #fff;
 }
 bgnd {
   position: fixed;
