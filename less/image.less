@@ -1,0 +1,19 @@
+@fade-in: opacity 1s ease-in-out;
+
+bgnd {
+  position: fixed;
+  display: block;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  transform: translate3d(0, 0, 0); // trigger GPU frame redraws in some mobile clients
+  -webkit-transition: @fade-in;
+  -moz-transition: @fade-in;
+  -o-transition: @fade-in;
+  transition: @fade-in;
+
+  &.out {
+    opacity: 0;
+  }
+}

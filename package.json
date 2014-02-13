@@ -1,0 +1,29 @@
+{
+  "name": "hipToe",
+  "version": "0.0.0",
+  "description": "Code challenge for hipmunk.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cnojima/hipToe.git"
+  },
+  "keywords": [
+    "tic",
+    "tac",
+    "toe"
+  ],
+  "author": "Chris Nojima",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cnojima/hipToe/issues"
+  },
+  "homepage": "https://github.com/cnojima/hipToe",
+  "dependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-less": "*",
+    "grunt-contrib-watch": "~0.5.3"
+  }
+}

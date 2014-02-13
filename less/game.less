@@ -1,0 +1,71 @@
+@board-width : 300px;
+
+
+.half(@n) {
+  @half: (@n / 2);
+}
+
+.third(@n) {
+  @third: (@n / 3);
+}
+
+
+.lnf {
+  opacity: 0.9;
+  background-color: #cecece;
+}
+
+gameboard {
+  z-index: 100;
+  .half(@board-width);
+  width : @board-width;
+  height : @board-width;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -@half;
+  margin-left: -@half;
+
+  /*border:1px solid #eee;*/
+
+  cell {
+    .third(@board-width);
+    .lnf;
+    
+    float: left;
+
+    display: block;
+    width : @third;
+    height: @third;
+    border:1px solid #fff;
+    font-size : 50px;
+    line-height: @third;
+    text-align: center;
+
+    &:hover {
+      cursor: pointer;
+      background-color: #aaa;
+    }
+  }
+
+  h1 {
+    .lnf;
+    position: absolute;
+    top: 0;
+    margin-top: -100px;
+    color: #fff;
+  }
+
+  controls {
+    .lnf;
+    border:1px solid #fff;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    line-height: 50px;
+    height: 50px;
+    margin-bottom: -53px;
+  }
+}
+
