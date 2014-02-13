@@ -184,7 +184,7 @@ if(![].indexOf) {
       cell.dataset.owner = next;
 
       if(winner()) {
-        alert('Winner: ' + names[next]);
+        alert('Winner: ' + names[next] + '\n\nPress "Reset" to begin a new game.');
       } else {
         // catch draw condition (all cells filled);
         if($('cell.available').length === 0) {
@@ -243,7 +243,7 @@ if(![].indexOf) {
       cells[i].innerHTML = '';
     }
 
-    $('messages')[0].innerHTML = 'Your move.';
+    //$('messages')[0].innerHTML = 'Your move.';
     next = 'p';
   }
 
