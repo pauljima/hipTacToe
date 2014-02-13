@@ -79,23 +79,64 @@ if(![].indexOf) {
 
 
 
-
+  /*****************************************************************************
+   **** JOSHUA's LOGIC
+   *****************************************************************************/
   /**
    * JS calculates best move, passes turn back to player
    */
   function play() {
     console.log('@play');
     var availableCells = $('cell.available'),
-      bestMoves,
+      bestMoves, bridgeMove,
       strongOpenMove = _getBestCell(availableCells);
+
+    // get logically weighted cell
+    bridgeMove = _getBridgeMove();
 
     // in jeopardy?
     bestMoves = _getCriticalCell();
 
     // play bestMove or just a strongOpenMove
-    placeMarker((bestMoves.length) ? bestMoves[0] : strongOpenMove, function() {
+    placeMarker((bestMoves.length) ? bestMoves[0] : (bridgeMove) ? bridgeMove : strongOpenMove, function() {
       next = 'p';
     });
+  }
+
+
+  /**
+   * in game play, find a cell that can potentially lead to victory
+   * @return {HtmlDOMElement|null}
+   */
+  function _getBridgeMove() {
+    var k, i, j, m, n, a, b,
+      checks,
+      checkCells,
+      ret = null;
+
+    for(k in cellMatrix) {
+      for(i=0, n=cellMatrix[k].length; i<n; i++) {
+        checks = [];
+        checkCells = [];
+
+        for(j=0, m=cellMatrix[k][i].length; j<m; j++) {
+          checks.push(cells[cellMatrix[k][i][j]].dataset.owner || '');
+          checkCells.push(cells[cellMatrix[k][i][j]]);
+        }
+
+        // we have 1 cell taken, 2 open
+        if(checks.join('') == 'c') {
+          // find available cells
+          for(a=0, b=checkCells.length; a<b; a++) {
+            if(checkCells[a].className.indexOf('available') > -1) {
+              return checkCells[a];
+            }
+          }
+        }
+      }
+    }
+
+    return ret;
   }
 
 
