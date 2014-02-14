@@ -1,4 +1,4 @@
-hipToe
+hipTacToe
 ======
 
 Code exercise for hipmunk.
